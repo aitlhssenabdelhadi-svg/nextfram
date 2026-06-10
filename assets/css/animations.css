@@ -1,0 +1,566 @@
+/* ===========================
+   ANIMATIONS.CSS — SCROLL & TRANSITION EFFECTS
+   Animation effects for scroll reveals, page transitions, and micro-interactions
+   =========================== */
+
+/* ── FADE & SLIDE UP REVEAL ──*/
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays for grouped reveals */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ── PORTFOLIO ITEM ANIMATIONS ──*/
+.portfolio-item {
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.portfolio-item.hidden {
+  pointer-events: none;
+}
+
+/* Hover zoom effect on portfolio cards */
+.portfolio-item {
+  overflow: hidden;
+  position: relative;
+}
+
+.portfolio-item img {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-item:hover img {
+  transform: scale(1.08);
+}
+
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(123, 63, 168, 0.85), rgba(124, 126, 223, 0.75));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2.5rem;
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: inset 0 0 60px rgba(123, 63, 168, 0.2);
+}
+
+.portfolio-item:hover .portfolio-overlay {
+  opacity: 1;
+  box-shadow: inset 0 0 60px rgba(123, 63, 168, 0.35);
+}
+
+.portfolio-overlay-content {
+  color: var(--white);
+}
+
+.portfolio-cat {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.8rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  display: inline-block;
+  width: fit-content;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: portfolioCatAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.15s forwards;
+}
+
+.portfolio-item:hover .portfolio-cat {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.portfolio-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
+  color: var(--white);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: portfolioTitleAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.25s forwards;
+}
+
+.portfolio-item:hover .portfolio-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.portfolio-client {
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.85);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: portfolioClientAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.35s forwards;
+}
+
+.portfolio-item:hover .portfolio-client {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Portfolio overlay animations */
+@keyframes portfolioCatAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes portfolioTitleAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes portfolioClientAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes portfolioCtaAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── FILTER BUTTON ANIMATIONS ──*/
+.filter-btn {
+  transition: all 0.3s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient);
+  transition: width 0.3s ease-out;
+}
+
+.filter-btn.active::after {
+  width: 100%;
+}
+
+.filter-btn:hover {
+  color: var(--white);
+}
+
+/* ── BUTTON HOVER EFFECTS ──*/
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.btn:hover::before {
+  opacity: 0.2;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(123, 63, 168, 0.4);
+}
+
+.btn-outline:hover {
+  background: rgba(124, 126, 223, 0.1);
+  border-color: var(--lavender);
+  color: var(--white);
+}
+
+/* ── SERVICE CARD ANIMATIONS ──*/
+.service-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card:hover {
+  transform: translateY(-12px) translateZ(0);
+}
+
+.service-icon {
+  display: inline-block;
+  font-size: 2.5rem;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin-bottom: 1rem;
+  position: relative;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.service-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(123, 63, 168, 0.25) 0%, transparent 70%);
+  border-radius: 12px;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.15) rotate(-8deg);
+  filter: drop-shadow(0 8px 16px rgba(123, 63, 168, 0.3));
+}
+
+.service-card:hover .service-icon::before {
+  opacity: 1;
+  box-shadow: 0 0 20px rgba(123, 63, 168, 0.4) inset;
+}
+
+/* ── TEAM CARD ANIMATIONS ──*/
+.team-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.team-photo-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+/* Image zoom animation */
+.team-photo-wrap img {
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.team-card:hover .team-photo-wrap img {
+  transform: scale(1.15);
+}
+
+/* Card lift and shadow enhancement */
+.team-card:hover {
+  transform: translateY(-8px) translateZ(0);
+  box-shadow: 0 24px 70px rgba(123, 63, 168, 0.25), inset 0 1px 0 rgba(124, 126, 223, 0.3);
+  background: linear-gradient(135deg, rgba(26, 21, 53, 0.95) 0%, rgba(34, 29, 66, 0.8) 100%);
+}
+
+/* Name highlighting */
+.team-name {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.team-card:hover .team-name {
+  color: var(--lavender);
+  text-shadow: 0 0 10px rgba(124, 126, 223, 0.4);
+}
+
+/* Role color shift */
+.team-role {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.team-card:hover .team-role {
+  color: var(--white);
+  text-shadow: 0 0 8px rgba(123, 63, 168, 0.3);
+}
+
+/* Bio text fade-in */
+.team-bio {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.8;
+}
+
+.team-card:hover .team-bio {
+  opacity: 1;
+  color: var(--white);
+}
+
+/* Social link icon animation */
+.team-instagram {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.team-instagram svg {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center;
+}
+
+.team-card:hover .team-instagram {
+  color: var(--white);
+}
+
+.team-card:hover .team-instagram svg {
+  transform: scale(1.2) rotate(8deg);
+  filter: drop-shadow(0 0 8px rgba(124, 126, 223, 0.4));
+}
+
+/* Instagram link background glow on hover */
+.team-instagram::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  background: radial-gradient(circle, rgba(124, 126, 223, 0.2) 0%, transparent 70%);
+  border-radius: 8px;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.team-card:hover .team-instagram::before {
+  opacity: 1;
+  box-shadow: 0 0 16px rgba(124, 126, 223, 0.3) inset;
+}
+
+/* ── LINK UNDERLINE ANIMATION ──*/
+.footer-links a::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer-links a:hover::before {
+  width: 100%;
+}
+
+/* ── FORM FOCUS ANIMATIONS ──*/
+.form-group {
+  transition: all 0.3s ease-out;
+}
+
+.form-group.focused {
+  transform: scale(1.01);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  box-shadow: 0 0 0 3px rgba(123, 63, 168, 0.2);
+}
+
+.form-group.error input,
+.form-group.error select,
+.form-group.error textarea {
+  border-color: #FF6B6B;
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+}
+
+/* ── STAT COUNTER ANIMATION ──*/
+.stat-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  min-width: 100px;
+}
+
+/* ── LIGHTBOX ANIMATIONS ──*/
+.lightbox {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+}
+
+.lightbox.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-content {
+  animation: lightboxZoomIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes lightboxZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ── SCROLL PROGRESS ──*/
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── PARTICLE ANIMATION ──*/
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-50px) translateX(20px);
+  }
+  90% {
+    opacity: 0.5;
+  }
+}
+
+.particle {
+  position: absolute;
+  background: var(--lavender);
+  border-radius: 50%;
+  animation: particleFloat linear infinite;
+}
+
+/* ── HOVER GLOW EFFECTS ──*/
+.glow-on-hover {
+  position: relative;
+  transition: all 0.3s ease-out;
+}
+
+.glow-on-hover:hover {
+  box-shadow: 0 0 20px rgba(123, 63, 168, 0.5), inset 0 0 20px rgba(123, 63, 168, 0.1);
+}
+
+/* ── SMOOTH PAGE TRANSITIONS ──*/
+body {
+  animation: pageEnter 0.6s ease-out;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── HAMBURGER MENU ANIMATION ──*/
+.hamburger span {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(10px, 10px);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* ── MODAL ANIMATIONS ──*/
+.modal-overlay {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-out;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  transform: scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-overlay.open .modal {
+  transform: scale(1);
+}
+
+/* ── ACTIVE STATE ANIMATIONS ──*/
+.nav-links a.active {
+  position: relative;
+}
+
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient);
+}
+
+/* ── REDUCE MOTION SUPPORT ──*/
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
